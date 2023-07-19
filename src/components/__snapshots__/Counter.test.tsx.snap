@@ -1,9 +1,9 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`<Counter /> > renders 1 1`] = `
 <div>
   <button
-    class="increment"
+    class="w-[200px] rounded-full bg-gray-100 border-2 border-gray-300 focus:border-gray-400 active:border-gray-400 px-[2rem] py-[1rem]"
   >
     Clicks: 
     <!--#-->
