@@ -1,0 +1,31 @@
+{
+  "name": "solid-space",
+  "scripts": {
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start",
+    "test": "vitest run",
+    "test-watch": "vitest",
+    "test-ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "deps": "pnpm up --latest -r"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@solidjs/meta": "^0.28.5",
+    "@solidjs/router": "^0.8.2",
+    "@solidjs/testing-library": "^0.8.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@types/testing-library__jest-dom": "^5.14.8",
+    "@vitest/coverage-c8": "^0.33.0",
+    "@vitest/ui": "^0.33.0",
+    "jsdom": "^22.1.0",
+    "solid-js": "^1.7.8",
+    "solid-start": "^0.2.26",
+    "solid-start-node": "^0.2.26",
+    "typescript": "^5.1.6",
+    "undici": "^5.22.1",
+    "vite": "^4.4.4",
+    "vitest": "^0.33.0"
+  }
+}
