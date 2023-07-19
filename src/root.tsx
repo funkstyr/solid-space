@@ -13,7 +13,7 @@ import {
 import { ErrorBoundary } from 'solid-start/error-boundary';
 
 import './root.css';
-import { api, queryClient } from '~/utils/trpc';
+import { api, queryClient } from '~/features/trpc';
 
 export default function Root() {
   return (
