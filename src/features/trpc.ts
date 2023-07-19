@@ -12,7 +12,7 @@ const getBaseUrl = () => {
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
 
-export const api = createTRPCSolidStart<AppRouter>({
+export const trpc = createTRPCSolidStart<AppRouter>({
   config() {
     return {
       links: [

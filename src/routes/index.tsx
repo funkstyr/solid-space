@@ -2,14 +2,14 @@ import { A, unstable_clientOnly } from 'solid-start';
 
 import Counter from '~/components/Counter';
 // import AgentList from '~/features/agent/AgentList';
-import { api } from '~/features/trpc';
+import { trpc } from '~/features/trpc';
 
 const AgentList = unstable_clientOnly(
   () => import('~/features/agent/AgentList')
 );
 
 export default function Home() {
-  const hello = api.example.hello.useQuery(() => 'World');
+  const hello = trpc.example.hello.useQuery(() => 'World');
 
   return (
     <main class="text-center mx-auto text-gray-700 p-4">

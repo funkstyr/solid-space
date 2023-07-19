@@ -13,26 +13,29 @@ import {
 import { ErrorBoundary } from 'solid-start/error-boundary';
 
 import './root.css';
-import { api, queryClient } from '~/features/trpc';
+import { trpc, queryClient } from '~/features/trpc';
 
 export default function Root() {
   return (
     <Html lang="en">
       <Head>
         <Title>SolidStart - With Vitest</Title>
+
         <Meta charset="utf-8" />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+
       <Body>
         <Suspense>
-          <api.Provider queryClient={queryClient}>
+          <trpc.Provider queryClient={queryClient}>
             <ErrorBoundary>
               <Routes>
                 <FileRoutes />
               </Routes>
             </ErrorBoundary>
-          </api.Provider>
+          </trpc.Provider>
         </Suspense>
+
         <Scripts />
       </Body>
     </Html>
