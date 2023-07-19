@@ -1,7 +1,11 @@
 import { A } from 'solid-start';
+
 import Counter from '~/components/Counter';
+import { api } from '~/utils/trpc';
 
 export default function Home() {
+  const hello = api.example.hello.useQuery(() => 'World');
+
   return (
     <main class="text-center mx-auto text-gray-700 p-4">
       <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
@@ -29,6 +33,10 @@ export default function Home() {
           About Page
         </A>{' '}
       </p>
+
+      <pre>
+        <code>{JSON.stringify(hello.data, null, 2)}</code>
+      </pre>
     </main>
   );
 }

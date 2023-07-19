@@ -13,6 +13,7 @@ import {
 import { ErrorBoundary } from 'solid-start/error-boundary';
 
 import './root.css';
+import { api, queryClient } from '~/utils/trpc';
 
 export default function Root() {
   return (
@@ -24,11 +25,13 @@ export default function Root() {
       </Head>
       <Body>
         <Suspense>
-          <ErrorBoundary>
-            <Routes>
-              <FileRoutes />
-            </Routes>
-          </ErrorBoundary>
+          <api.Provider queryClient={queryClient}>
+            <ErrorBoundary>
+              <Routes>
+                <FileRoutes />
+              </Routes>
+            </ErrorBoundary>
+          </api.Provider>
         </Suspense>
         <Scripts />
       </Body>
