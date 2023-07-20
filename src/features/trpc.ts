@@ -1,6 +1,7 @@
 import { QueryClient } from '@tanstack/solid-query';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCSolidStart } from 'solid-trpc';
+import superjson from 'superjson';
 
 import { AppRouter } from '~/server/root';
 
@@ -15,6 +16,7 @@ const getBaseUrl = () => {
 export const trpc = createTRPCSolidStart<AppRouter>({
   config() {
     return {
+      transformer: superjson,
       links: [
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
