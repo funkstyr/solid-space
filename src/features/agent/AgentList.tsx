@@ -23,22 +23,22 @@ export default function AgentList() {
     agent: "",
   });
 
-  const res = trpc.agent.register.useMutation();
+  const registerAgent = trpc.agent.register.useMutation();
   const selectAgent = trpc.agent.select.useMutation();
 
   createEffect(() => {
-    if (res?.data?.data) {
-      const { token, agent } = res.data.data;
+    if (registerAgent?.data?.data) {
+      const { token, agent } = registerAgent.data.data;
 
       // if not in the agents list, add to list
       if (!agents.filter((a) => a.token === token).length) {
         setAgents([...agents, { token, ...agent }]);
       }
     }
-  }, res?.data?.data?.token);
+  }, registerAgent?.data?.data?.token);
 
   const _handleClick = async () => {
-    await res.mutate(agentInput.agent);
+    await registerAgent.mutate(agentInput.agent);
   };
 
   return (
