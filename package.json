@@ -8,6 +8,7 @@
     "test-watch": "vitest",
     "test-ui": "vitest --ui",
     "coverage": "vitest run --coverage",
+    "coverage:open": "open coverage/index.html",
     "deps": "pnpm up --latest -r",
     "docker:build": "docker build . -t solid-space:latest",
     "docker:run": "docker run -p 3000:3000 solid-space:latest"
