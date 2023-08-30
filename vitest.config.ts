@@ -10,10 +10,7 @@ export default defineConfig({
     },
     environment: "jsdom",
     globals: true,
-    setupFiles: [
-      "node_modules/@testing-library/jest-dom/extend-expect",
-      "./setupVitest.js",
-    ],
+    setupFiles: ["node_modules/@testing-library/jest-dom", "./setupVitest.js"],
     transformMode: { web: [/\.[jt]sx?$/] },
   },
   resolve: {
