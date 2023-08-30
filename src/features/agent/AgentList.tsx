@@ -1,13 +1,18 @@
-import { For, createEffect } from 'solid-js';
-import { createLocalStore } from '~/features/local-storage/createLocalStore';
-import { trpc } from '~/features/trpc';
+import { For, createEffect } from "solid-js";
+import { createStore } from "solid-js/store";
+import { createLocalStore } from "~/features/local-storage/createLocalStore";
+import { trpc } from "~/features/trpc";
 
 export default function AgentList() {
-  const [agents, setAgents] = createLocalStore('agents', []);
+  const [agents, setAgents] = createLocalStore<Agent>("agents", []);
   const [selectedAgent, setSelectedAgent] = createLocalStore(
-    'selectedAgent',
+    "selectedAgent",
     null
   );
+
+  const [agentInput, setAgentInput] = createStore<{ agent: string }>({
+    agent: "",
+  });
 
   const res = trpc.agent.register.useMutation();
   const selectAgent = trpc.agent.select.useMutation();
@@ -24,25 +29,44 @@ export default function AgentList() {
   }, res?.data?.data?.token);
 
   const _handleClick = async () => {
-    await res.mutate('firkenFox34');
+    await res.mutate(agentInput.agent);
   };
 
   return (
-    <div>
-      <button
-        class="w-[200px] rounded-full bg-gray-100 border-2 border-gray-300 focus:border-gray-400 active:border-gray-400 px-[2rem] py-[1rem]"
-        onClick={_handleClick}
-      >
-        Add agent
-      </button>
+    <div class=''>
+      <div class='flex flex-row justify-center items-end gap-2'>
+        <div class='form-control w-full max-w-xs'>
+          <label class='label'>
+            <span class='label-text'>Create Agent</span>
+          </label>
+          <input
+            class='input input-bordered w-full max-w-xs'
+            type='text'
+            name='agent'
+            placeholder='agent name'
+            value={agentInput.agent}
+            onInput={(evt) => setAgentInput({ agent: evt.target.value })}
+          />
+        </div>
 
-      <div class="flex flex-col align-items-center">
+        <button class='btn btn-outline' onClick={_handleClick}>
+          Add agent
+        </button>
+      </div>
+
+      <div class='flex flex-row justify-center'>
+        <p>Selected: {selectedAgent.symbol}</p>
+      </div>
+
+      <div class='flex flex-col align-items-center'>
+        <p>Agents:</p>
+
         <For each={agents}>
           {(agent, idx) => {
             return (
               <AgentListItem
                 agent={agent}
-                isSelected={agent.token === selectedAgent.token}
+                isSelected={agent.accountId === selectedAgent.accountId}
                 onClick={() => {
                   setSelectedAgent(agent);
                   selectAgent.mutate(agent.token);
@@ -56,15 +80,30 @@ export default function AgentList() {
   );
 }
 
-export function AgentListItem(props) {
+interface Agent {
+  accountId: string;
+  credits: number;
+  headquarters: string;
+  startingFaction: string;
+  symbol: string;
+  token: string;
+}
+
+interface AgentListeItemProps {
+  agent: Agent;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+export function AgentListItem(props: AgentListeItemProps) {
   const { agent, onClick, isSelected = false } = props;
 
   return (
     <li
       onClick={onClick}
-      class="inline-flex p-4 flex-space-between w-1/2 justify-evenly cursor-pointer"
+      class='inline-flex p-4 flex-space-between w-1/2 justify-evenly cursor-pointer'
     >
-      <div class={isSelected ? 'text-green-500' : ''}>{agent.symbol}</div>
+      <div class={isSelected ? "text-green-500" : ""}>{agent.symbol}</div>
 
       <div>- {agent.startingFaction} -</div>
 
