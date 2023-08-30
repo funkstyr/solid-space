@@ -1,7 +1,7 @@
-import { createSolidAPIHandler } from 'solid-start-trpc';
+import { createSolidAPIHandler } from "solid-start-trpc";
 
-import { appRouter } from '~/server/root';
-import { createTRPCContext } from '~/server/utils';
+import { appRouter } from "~/server/root";
+import { createTRPCContext } from "~/server/utils";
 
 const handler = createSolidAPIHandler({
   router: appRouter,

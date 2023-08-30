@@ -1,13 +1,13 @@
-import { TRPCError, initTRPC } from '@trpc/server';
-import { CreateNextContextOptions } from '@trpc/server/adapters/next';
-import superjson from 'superjson';
+import { TRPCError, initTRPC } from "@trpc/server";
+import { CreateNextContextOptions } from "@trpc/server/adapters/next";
+import superjson from "superjson";
 
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const { req } = opts;
 
   return {
     ...opts,
-    token: '',
+    token: "",
   };
 };
 
@@ -20,7 +20,7 @@ export const publicProcedure = t.procedure;
 
 const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
   if (!ctx.token) {
-    throw new TRPCError({ code: 'UNAUTHORIZED' });
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
   return next({
     ctx,

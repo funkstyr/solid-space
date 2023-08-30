@@ -1,7 +1,7 @@
-import { unstable_clientOnly } from 'solid-start';
+import { unstable_clientOnly } from "solid-start";
 
 const AgentList = unstable_clientOnly(
-  () => import('~/features/agent/AgentList')
+  () => import("~/features/agent/AgentList"),
 );
 
 export default function Home() {

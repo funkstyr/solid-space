@@ -1,7 +1,7 @@
-import { TRPCError } from '@trpc/server';
-import { z } from 'zod';
+import { TRPCError } from "@trpc/server";
+import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure } from '~/server/utils';
+import { createTRPCRouter, publicProcedure } from "~/server/utils";
 
 export const agentRouter = createTRPCRouter({
   register: publicProcedure
@@ -50,14 +50,14 @@ export const agentRouter = createTRPCRouter({
     //   })
     // )
     .mutation(async ({ input }) => {
-      const resp = await fetch('https://api.spacetraders.io/v2/register', {
-        method: 'POST',
+      const resp = await fetch("https://api.spacetraders.io/v2/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           symbol: input,
-          faction: 'COSMIC',
+          faction: "COSMIC",
         }),
       });
 
@@ -69,8 +69,8 @@ export const agentRouter = createTRPCRouter({
 
     if (!input) {
       throw new TRPCError({
-        code: 'BAD_REQUEST',
-        message: 'token invalid',
+        code: "BAD_REQUEST",
+        message: "token invalid",
       });
     }
 
