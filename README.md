@@ -1,3 +1,12 @@
+# Solid Space
+
+> A solid.js application for Space Traders API
+> 
+> [Space Traders](https://spacetraders.io/)
+> 
+> [Docs](https://docs.spacetraders.io/)
+
+
 # SolidStart
 
 Everything you need to build a Solid project, powered by [`solid-start`](https://start.solidjs.com);
