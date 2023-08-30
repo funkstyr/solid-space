@@ -8,7 +8,9 @@
     "test-watch": "vitest",
     "test-ui": "vitest --ui",
     "coverage": "vitest run --coverage",
-    "deps": "pnpm up --latest -r"
+    "deps": "pnpm up --latest -r",
+    "docker:build": "docker build . -t solid-space:latest",
+    "docker:run": "docker run -p 3000:3000 solid-space:latest"
   },
   "type": "module",
   "dependencies": {

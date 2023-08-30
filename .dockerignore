@@ -1,0 +1,15 @@
+# add git-ignore syntax here of things you don't want copied into docker image
+
+.dockerignore
+.git
+.results
+scripts
+*Dockerfile*
+node_modules
+.env
+
+.solid
+dist
+.vscode
+setupVitest.js
+vitest.config.ts
