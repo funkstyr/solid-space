@@ -1,5 +1,5 @@
-import { createEffect } from 'solid-js';
-import { createStore, Store, SetStoreFunction } from 'solid-js/store';
+import { createEffect } from "solid-js";
+import { createStore } from "solid-js/store";
 
 export function createLocalStore(name: string, initState: any) {
   const localState = localStorage.getItem(name);

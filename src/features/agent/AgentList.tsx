@@ -1,10 +1,19 @@
 import { For, createEffect } from "solid-js";
 import { createStore } from "solid-js/store";
-import { createLocalStore } from "~/features/local-storage/createLocalStore";
+import { createLocalStore } from "~/features/local-storage";
 import { trpc } from "~/features/trpc";
 
+interface Agent {
+  accountId: string;
+  credits: number;
+  headquarters: string;
+  startingFaction: string;
+  symbol: string;
+  token: string;
+}
+
 export default function AgentList() {
-  const [agents, setAgents] = createLocalStore<Agent>("agents", []);
+  const [agents, setAgents] = createLocalStore("agents", []);
   const [selectedAgent, setSelectedAgent] = createLocalStore(
     "selectedAgent",
     null
@@ -62,7 +71,7 @@ export default function AgentList() {
         <p>Agents:</p>
 
         <For each={agents}>
-          {(agent, idx) => {
+          {(agent: Agent, _idx) => {
             return (
               <AgentListItem
                 agent={agent}
@@ -78,15 +87,6 @@ export default function AgentList() {
       </div>
     </div>
   );
-}
-
-interface Agent {
-  accountId: string;
-  credits: number;
-  headquarters: string;
-  startingFaction: string;
-  symbol: string;
-  token: string;
 }
 
 interface AgentListeItemProps {
