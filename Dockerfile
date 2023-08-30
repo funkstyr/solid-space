@@ -33,9 +33,6 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 user
-
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json .
 
@@ -43,13 +40,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.solid ./.solid
 COPY --from=builder /app/dist ./dist
 
-
-
-USER user
 EXPOSE 3000
 ENV PORT 3000
 
 # set hostname to localhost
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", ".solid/server/entry-server.js"]
+CMD ["npm", "run", "start"]
