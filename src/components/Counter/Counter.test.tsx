@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@solidjs/testing-library";
+import { describe, beforeEach, it, expect } from "vitest";
 import { Counter } from "./Counter";
 
 describe("<Counter />", () => {

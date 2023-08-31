@@ -1,5 +1,5 @@
 import { createRoot, createEffect } from "solid-js";
-import { describe, expect, it, beforeEach } from "vitest";
+import { describe, expect, it, afterEach } from "vitest";
 
 import { createLocalStore } from "./createLocalStore";
 
@@ -33,7 +33,7 @@ describe("createLocalStorage", () => {
 
   it("stores new state to localStorage", () => {
     createRoot((dispose) => {
-      const [state, setState] = createLocalStore("state", initialState);
+      const [_state, setState] = createLocalStore("state", initialState);
       setState("newTitle", "updated");
 
       return new Promise((resolve) =>
@@ -44,14 +44,14 @@ describe("createLocalStorage", () => {
           });
           dispose();
           resolve(1);
-        }),
+        })
       );
     });
   });
 
   it("updates state multiple times", async () => {
     const { dispose, setState } = createRoot((dispose) => {
-      const [state, setState] = createLocalStore("state", initialState);
+      const [_state, setState] = createLocalStore("state", initialState);
       return { dispose, setState };
     });
 

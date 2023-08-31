@@ -3,7 +3,7 @@ import { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 
 export const createTRPCContext = async (opts: CreateNextContextOptions) => {
-  const { req } = opts;
+  // const { req } = opts;
 
   return {
     ...opts,
