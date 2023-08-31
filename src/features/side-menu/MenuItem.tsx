@@ -18,7 +18,7 @@ const MenuItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export function MenuItem(props: MenuItemProps) {

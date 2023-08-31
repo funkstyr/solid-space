@@ -44,7 +44,7 @@ describe("createLocalStorage", () => {
           });
           dispose();
           resolve(1);
-        })
+        }),
       );
     });
   });
